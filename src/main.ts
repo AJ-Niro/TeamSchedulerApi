@@ -1,11 +1,11 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
+import UserController from './controllers/user.controller';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello, TypeScript with Node.js!');
-});
+const userController = new UserController();
+app.use('/user', userController.router);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
