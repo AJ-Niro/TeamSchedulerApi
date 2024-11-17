@@ -5,15 +5,20 @@
   "main": "main.ts",
   "scripts": {
     "dev": "tsx watch src/main.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "lint:test": "eslint ."
   },
   "author": "AndresJoaquinNino",
   "license": "MIT",
   "devDependencies": {
+    "@eslint/js": "9.15.0",
+    "@types/eslint__js": "8.42.3",
     "@types/express": "5.0.0",
     "@types/node": "22.9.0",
+    "eslint": "9.14.0",
     "tsx": "4.19.2",
-    "typescript": "5.6.3"
+    "typescript": "5.6.3",
+    "typescript-eslint": "8.14.0"
   },
   "dependencies": {
     "express": "4.21.1"
