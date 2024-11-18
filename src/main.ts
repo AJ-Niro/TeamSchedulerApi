@@ -1,5 +1,8 @@
+import 'reflect-metadata'
+import 'dotenv/config' // Loads environment variables
 import express from 'express'
 import UserController from './controllers/user.controller'
+import { AppDataSource } from './config/typeorm.config'
 
 const app = express()
 const PORT = process.env.PORT ?? 3000
@@ -7,6 +10,12 @@ const PORT = process.env.PORT ?? 3000
 const userController = new UserController()
 app.use('/user', userController.router)
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`)
-})
+AppDataSource.initialize()
+  .then(() => {
+    console.log('Database connection established')
+
+    app.listen(PORT, () => {
+      console.log(`Server is running at http://localhost:${PORT}`)
+    })
+  })
+  .catch((error) => console.error('Database connection failed:', error))
