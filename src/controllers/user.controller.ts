@@ -2,9 +2,6 @@ import { Request, Response } from 'express';
 import { BaseController } from "./base.controller";
 
 export default class UserController extends BaseController {
-  constructor() {
-    super();
-  }
 
   protected initializeRoutes(): void {
     this.router.get('', this.getUsers);
