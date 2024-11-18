@@ -1,7 +1,7 @@
 // @ts-check
 
-import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
+import eslint from '@eslint/js'
+import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
   eslint.configs.recommended,
@@ -22,14 +22,12 @@ export default tseslint.config(
     ignores: [
       'dist/**/*.ts',
       'dist/**',
-      "**/*.mjs",
-      "eslint.config.mjs",
-      "**/*.js"
+      '**/*.mjs',
+      'eslint.config.mjs',
+      '**/*.js',
     ],
   },
   {
-    files: [
-      "src/**/*.ts"
-    ],
-  }
-);
+    files: ['src/**/*.ts'],
+  },
+)

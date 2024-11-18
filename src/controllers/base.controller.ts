@@ -1,12 +1,12 @@
-import { Router } from 'express';
+import { Router } from 'express'
 
 export abstract class BaseController {
-  public router: Router;
+  public router: Router
 
   constructor() {
-    this.router = Router();
-    this.initializeRoutes();
+    this.router = Router()
+    this.initializeRoutes()
   }
 
-  protected abstract initializeRoutes(): void;
+  protected abstract initializeRoutes(): void
 }
