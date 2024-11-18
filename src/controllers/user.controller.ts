@@ -4,8 +4,8 @@ import { BaseController } from "./base.controller";
 export default class UserController extends BaseController {
 
   protected initializeRoutes(): void {
-    this.router.get('', this.getUsers);
-    this.router.post('', this.createUser);
+    this.router.get('', (req, res) => this.getUsers(req, res));
+    this.router.post('', (req, res) => this.createUser(req, res));
   }
 
   private getUsers(req: Request, res: Response): void {
