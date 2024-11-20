@@ -1,7 +1,7 @@
 import 'reflect-metadata'
 import 'dotenv/config' // Loads environment variables
 import express from 'express'
-import UserController from './controllers/user.controller'
+import UserController from './app/controllers/user.controller'
 import { AppDataSource } from './config/typeorm.config'
 
 const app = express()
