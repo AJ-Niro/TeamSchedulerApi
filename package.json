@@ -9,7 +9,12 @@
     "lint:test": "eslint .",
     "prettier:test": "prettier . --check",
     "prettier:fix": "prettier . --write",
-    "prepare": "husky"
+    "prepare": "husky",
+    "typeorm:cli": "tsx --require tsconfig-paths/register ./node_modules/typeorm/cli",
+    "migration:create": "npm run typeorm:cli migration:create src/migrations/$npm_config_name",
+    "migration:run": "npm run typeorm:cli migration:run -- -d src/config/typeorm.config.ts",
+    "migration:revert": "npm run typeorm:cli migration:revert -- -d src/config/typeorm.config.ts",
+    "migration:show": "npm run typeorm:cli migration:show -- -d ./src/config/typeorm.config.ts"
   },
   "author": "AndresJoaquinNino",
   "license": "MIT",
@@ -18,9 +23,11 @@
     "@types/eslint__js": "8.42.3",
     "@types/express": "5.0.0",
     "@types/node": "22.9.0",
+    "dotenv": "16.4.5",
     "eslint": "9.14.0",
     "husky": "9.1.6",
     "prettier": "3.3.3",
+    "tsconfig-paths": "4.2.0",
     "tsx": "4.19.2",
     "typescript": "5.6.3",
     "typescript-eslint": "8.14.0"
