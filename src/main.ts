@@ -1,14 +1,13 @@
 import 'reflect-metadata'
 import 'dotenv/config' // Loads environment variables
 import express from 'express'
-import UserController from './app/controllers/user.controller'
+import userRoutes from './routes/user.routes'
 import { AppDataSource } from './config/typeorm.config'
 
 const app = express()
 const PORT = process.env.PORT ?? 3000
 
-const userController = new UserController()
-app.use('/user', userController.router)
+app.use('/user', userRoutes)
 
 AppDataSource.initialize()
   .then(() => {
