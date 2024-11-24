@@ -1,5 +1,5 @@
-import { UserRepository } from '../repositories/user.repository'
-import UserEntity from '../../database/entities/user.entity'
+import { UserRepository } from '@app/repositories/user.repository'
+import UserEntity from '@database/entities/user.entity'
 
 export class UserService {
   private userRepository: UserRepository

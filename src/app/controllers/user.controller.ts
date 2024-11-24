@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-import { UserService } from '../services/user.service'
-import UserEntity from '../../database/entities/user.entity'
+import { UserService } from '@app/services/user.service'
+import UserEntity from '@database/entities/user.entity'
 
 export default class UserController {
   private userService: UserService

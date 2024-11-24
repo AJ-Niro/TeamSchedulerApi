@@ -1,6 +1,6 @@
 import { Repository } from 'typeorm'
-import UserEntity from '../../database/entities/user.entity'
-import { AppDataSource } from '../../config/typeorm.config'
+import UserEntity from '@database/entities/user.entity'
+import { AppDataSource } from '@config/typeorm.config'
 
 export class UserRepository {
   private repository: Repository<UserEntity>
