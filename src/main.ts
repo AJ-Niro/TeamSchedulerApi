@@ -6,11 +6,12 @@ import { AppDataSource } from './config/typeorm.config'
 
 const app = express()
 const PORT = process.env.PORT ?? 3000
+const BASE_URL = process.env.BASE_URL ?? '/api'
 
 // Middleware to parse JSON bodies
 app.use(express.json())
 
-app.use('/user', userRouter)
+app.use(`${BASE_URL}/user`, userRouter)
 
 AppDataSource.initialize()
   .then(() => {
