@@ -1,15 +1,15 @@
 import { Router } from 'express'
 import UserController from '../app/controllers/user.controller'
 
-const userRoutes = Router()
+const userRouter = Router()
 const userController = new UserController()
 
-userRoutes.get('/', async (req, res) => {
+userRouter.get('/', async (req, res) => {
   await userController.getAllUsers(req, res)
 })
 
-userRoutes.post('/', async (req, res) => {
+userRouter.post('/', async (req, res) => {
   await userController.createUser(req, res)
 })
 
-export default userRoutes
+export default userRouter
