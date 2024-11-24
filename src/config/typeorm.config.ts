@@ -9,7 +9,7 @@ export const AppDataSource = new DataSource({
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
   synchronize: false,
-  logging: true,
+  logging: process.env.POSTGRES_LOGGING === 'true',
   entities: ['src/database/entities/*.ts'],
   migrations: ['src/database/migrations/*.ts'],
 })
