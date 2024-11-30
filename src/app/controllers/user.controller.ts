@@ -1,6 +1,8 @@
 import { Request, Response } from 'express'
 import { UserService } from '@app/services/user.service'
-import UserEntity from '@database/entities/user.entity'
+import { plainToInstance } from 'class-transformer'
+import { validate, ValidationError } from 'class-validator'
+import { CreateUserDTO } from '@app/dtos/user.dto'
 
 export default class UserController {
   private userService: UserService
@@ -18,9 +20,19 @@ export default class UserController {
     req: Request<unknown, unknown, { name: string }>,
     res: Response,
   ) {
-    const userNewRecord = new UserEntity()
-    userNewRecord.name = req.body.name
-    const user = await this.userService.createUser(userNewRecord)
+    const createUserInstance = plainToInstance(CreateUserDTO, req.body)
+    const errors: ValidationError[] = await validate(createUserInstance)
+
+    if (errors.length > 0) {
+      const errorMessages = errors
+        .map((error) => Object.values(error.constraints ?? {}))
+        .flat()
+      return res
+        .status(400)
+        .json({ message: 'Validation failed', errors: errorMessages })
+    }
+
+    const user = await this.userService.createUser(createUserInstance)
     return res.status(201).json(user)
   }
 }

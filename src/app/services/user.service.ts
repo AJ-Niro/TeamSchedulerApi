@@ -1,5 +1,6 @@
 import { UserRepository } from '@app/repositories/user.repository'
 import UserEntity from '@database/entities/user.entity'
+import { CreateUserDTO } from '@app/dtos/user.dto'
 
 export class UserService {
   private userRepository: UserRepository
@@ -12,7 +13,9 @@ export class UserService {
     return this.userRepository.findAll()
   }
 
-  async createUser(userData: Partial<UserEntity>): Promise<UserEntity> {
-    return this.userRepository.create(userData)
+  async createUser(userData: CreateUserDTO): Promise<UserEntity> {
+    const userNewRecord = new UserEntity()
+    userNewRecord.name = userData.name
+    return this.userRepository.create(userNewRecord)
   }
 }
