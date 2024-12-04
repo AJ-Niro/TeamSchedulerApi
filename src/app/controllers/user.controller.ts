@@ -1,14 +1,17 @@
+import { injectable, inject } from 'inversify'
+import TYPES from '@config/inversify.types'
 import { Request, Response } from 'express'
 import { UserService } from '@app/services/user.service'
 import { plainToInstance } from 'class-transformer'
 import { validate, ValidationError } from 'class-validator'
 import { CreateUserDTO } from '@app/dtos/user.dto'
 
+@injectable()
 export default class UserController {
   private userService: UserService
 
-  constructor() {
-    this.userService = new UserService()
+  constructor(@inject(TYPES.UserService) userService: UserService) {
+    this.userService = userService
   }
 
   async getAllUsers(req: Request, res: Response): Promise<Response> {
