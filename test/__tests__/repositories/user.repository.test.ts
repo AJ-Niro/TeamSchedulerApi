@@ -1,30 +1,13 @@
 import { UserRepository } from '@app/repositories/user.repository'
 import UserEntity from '@database/entities/user.entity'
-import { Repository } from 'typeorm'
-import { AppDataSource } from '@config/typeorm.config'
-
-// Mock the TypeORM repository and AppDataSource
-jest.mock('@config/typeorm.config', () => ({
-  AppDataSource: {
-    getRepository: jest.fn(),
-  },
-}))
+import { mockRepository } from '@test/__mocks__/config/typeorm.config.mock'
 
 describe('UserRepository', () => {
   let userRepository: UserRepository
-  let mockRepository: jest.Mocked<Repository<UserEntity>>
 
   beforeEach(() => {
-    // Create a mock repository
-    mockRepository = {
-      find: jest.fn(),
-      create: jest.fn(),
-      save: jest.fn(),
-    } as unknown as jest.Mocked<Repository<UserEntity>>
-
-    // Mock AppDataSource.getRepository to return the mock repository
-    ;(AppDataSource.getRepository as jest.Mock).mockReturnValue(mockRepository)
-
+    // Reset mock call counts before each test
+    jest.clearAllMocks()
     // Initialize UserRepository
     userRepository = new UserRepository()
   })
@@ -58,11 +41,14 @@ describe('UserRepository', () => {
       const result = await userRepository.create(userData)
       expect(result).toEqual(savedUser)
 
-      const createUserCallArg = mockRepository.create.mock
-        .calls[0][0] as Partial<UserEntity>
+      const [createUserCallArg] = mockRepository.create.mock.calls[0] as [
+        Partial<UserEntity>,
+      ]
       expect(createUserCallArg).toEqual(userData)
 
-      const saveUserCallArg = mockRepository.save.mock.calls[0][0] as UserEntity
+      const [saveUserCallArg] = mockRepository.save.mock.calls[0] as [
+        UserEntity,
+      ]
       expect(saveUserCallArg).toEqual(savedUser)
     })
   })
