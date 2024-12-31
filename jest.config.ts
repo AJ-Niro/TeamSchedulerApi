@@ -93,6 +93,7 @@ const config: Config = {
     '^@app/(.*)$': '<rootDir>/src/app/$1',
     '^@config/(.*)$': '<rootDir>/src/config/$1',
     '^@database/(.*)$': '<rootDir>/src/database/$1',
+    '^@test/(.*)$': '<rootDir>/test/$1',
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -138,7 +139,7 @@ const config: Config = {
   setupFiles: ['reflect-metadata'],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  // setupFilesAfterEnv: [],
+  setupFilesAfterEnv: [],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   // slowTestThreshold: 5,
