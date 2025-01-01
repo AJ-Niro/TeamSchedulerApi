@@ -16,7 +16,7 @@ export default class UserController {
 
   async getAllUsers(req: Request, res: Response): Promise<Response> {
     const users = await this.userService.getAllUsers()
-    return res.json(users)
+    return res.status(200).json(users)
   }
 
   async createUser(
