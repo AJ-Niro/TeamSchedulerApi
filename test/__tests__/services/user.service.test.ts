@@ -19,8 +19,18 @@ describe('UserService', () => {
   describe('getAllUsers', () => {
     it('should return all users', async () => {
       const mockUsers: UserEntity[] = [
-        { id: 1, name: 'Alice' } as UserEntity,
-        { id: 2, name: 'Bob' } as UserEntity,
+        {
+          id: 1,
+          email: 'alice@test.com',
+          first_name: 'Alice',
+          last_name: 'Jensen',
+        } as UserEntity,
+        {
+          id: 2,
+          email: 'bob@test.com',
+          first_name: 'Bob',
+          last_name: 'Mueller',
+        } as UserEntity,
       ]
 
       mockUserRepository.findAll.mockResolvedValue(mockUsers)
@@ -35,9 +45,16 @@ describe('UserService', () => {
   describe('createUser', () => {
     it('should create and return a user', async () => {
       const userData = new CreateUserDTO()
-      userData.name = 'Charlie'
+      userData.email = 'charlie@test.com'
+      userData.first_name = 'Charlie'
+      userData.last_name = 'Goodman'
 
-      const mockUser: UserEntity = { id: 3, name: 'Charlie' } as UserEntity
+      const mockUser: UserEntity = {
+        id: 3,
+        email: 'charlie@test.com',
+        first_name: 'Charlie',
+        last_name: 'Goodman',
+      } as UserEntity
 
       mockUserRepository.create.mockResolvedValue(mockUser)
 

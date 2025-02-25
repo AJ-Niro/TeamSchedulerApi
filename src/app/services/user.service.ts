@@ -18,7 +18,9 @@ export class UserService {
 
   async createUser(userData: CreateUserDTO): Promise<UserEntity> {
     const userNewRecord = new UserEntity()
-    userNewRecord.name = userData.name
+    userNewRecord.email = userData.email
+    userNewRecord.first_name = userData.first_name
+    userNewRecord.last_name = userData.last_name
     return this.userRepository.create(userNewRecord)
   }
 }

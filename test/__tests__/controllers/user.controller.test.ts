@@ -27,8 +27,18 @@ describe('UserController', () => {
   describe('getAllUsers', () => {
     it('should return a list of users with status 200', async () => {
       const mockUsers = [
-        { id: 1, name: 'Alice' },
-        { id: 2, name: 'Bob' },
+        {
+          id: 1,
+          email: 'alice@test.com',
+          first_name: 'Alice',
+          last_name: 'Jensen',
+        },
+        {
+          id: 2,
+          email: 'bob@test.com',
+          first_name: 'Bob',
+          last_name: 'Mueller',
+        },
       ]
 
       mockUserService.getAllUsers.mockResolvedValue(mockUsers)
@@ -47,8 +57,17 @@ describe('UserController', () => {
 
   describe('createUser', () => {
     it('should create a user and return it with status 201', async () => {
-      const mockUserData = { name: 'Charlie' }
-      const mockUser = { id: 3, name: 'Charlie' }
+      const mockUserData = {
+        email: 'charlie@test.com',
+        first_name: 'Charlie',
+        last_name: 'Goodman',
+      }
+      const mockUser = {
+        id: 3,
+        email: 'charlie@test.com',
+        first_name: 'Charlie',
+        last_name: 'Goodman',
+      }
 
       mockRequest.body = mockUserData
 

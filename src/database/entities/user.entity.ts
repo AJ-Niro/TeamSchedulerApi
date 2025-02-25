@@ -10,5 +10,15 @@ export default class UserEntity {
   @Column({
     type: 'varchar',
   })
-  name!: string
+  email!: string
+
+  @Column({
+    type: 'varchar',
+  })
+  first_name!: string
+
+  @Column({
+    type: 'varchar',
+  })
+  last_name!: string
 }

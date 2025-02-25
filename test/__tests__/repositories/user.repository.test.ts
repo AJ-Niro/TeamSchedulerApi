@@ -15,8 +15,18 @@ describe('UserRepository', () => {
   describe('findAll', () => {
     it('should return all users', async () => {
       const mockUsers: UserEntity[] = [
-        { id: 1, name: 'Alice' } as UserEntity,
-        { id: 2, name: 'Bob' } as UserEntity,
+        {
+          id: 1,
+          email: 'alice@test.com',
+          first_name: 'Alice',
+          last_name: 'Jensen',
+        } as UserEntity,
+        {
+          id: 2,
+          email: 'bob@test.com',
+          first_name: 'Bob',
+          last_name: 'Mueller',
+        } as UserEntity,
       ]
 
       // Mock the find method
@@ -31,7 +41,11 @@ describe('UserRepository', () => {
 
   describe('create', () => {
     it('should create and save a user', async () => {
-      const userData = { name: 'Charlie' }
+      const userData = {
+        email: 'charlie@test.com',
+        first_name: 'Charlie',
+        last_name: 'Goodman',
+      } as Partial<UserEntity>
       const savedUser = { id: 3, ...userData } as UserEntity
 
       // Mock create and save methods
